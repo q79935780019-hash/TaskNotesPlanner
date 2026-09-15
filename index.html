@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Notes Planner - Планировщик Задач и Заметок</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Боковая панель навигации -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>📋 Task Planner</h1>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-btn active" data-section="notes">
+                    <span class="icon">📝</span> Заметки
+                </button>
+                <button class="nav-btn" data-section="tasks">
+                    <span class="icon">✅</span> Задачи
+                </button>
+                <button class="nav-btn" data-section="plans">
+                    <span class="icon">🎯</span> Планы
+                </button>
+                <button class="nav-btn" data-section="progress">
+                    <span class="icon">📊</span> Прогресс
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Основной контент -->
+        <main class="main-content">
+            <!-- Заголовок -->
+            <header class="header">
+                <h2 id="section-title">Мои Заметки</h2>
+                <div class="header-actions">
+                    <input type="search" id="search-input" placeholder="Поиск..." class="search-box">
+                    <button id="add-btn" class="btn btn-primary">+ Добавить</button>
+                </div>
+            </header>
+
+            <!-- Секция Заметки -->
+            <section id="notes" class="section active">
+                <div class="notes-container" id="notes-list">
+                    <div class="empty-state">
+                        <p>📭 Нет заметок</p>
+                        <small>Нажмите кнопку "Добавить" чтобы создать новую заметку</small>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секция Задачи -->
+            <section id="tasks" class="section">
+                <div class="tasks-filters">
+                    <button class="filter-btn active" data-filter="all">Все</button>
+                    <button class="filter-btn" data-filter="active">В процессе</button>
+                    <button class="filter-btn" data-filter="completed">Выполнено</button>
+                </div>
+                <div class="tasks-container" id="tasks-list">
+                    <div class="empty-state">
+                        <p>📭 Нет задач</p>
+                        <small>Создавайте задачи и отслеживайте их выполнение</small>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секция Планы -->
+            <section id="plans" class="section">
+                <div class="plans-container" id="plans-list">
+                    <div class="empty-state">
+                        <p>📭 Нет планов</p>
+                        <small>Создавайте долгосрочные планы и цели</small>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секция Прогресс -->
+            <section id="progress" class="section">
+                <div class="progress-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-tasks">0</div>
+                        <div class="stat-label">Всего задач</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="completed-tasks">0</div>
+                        <div class="stat-label">Выполнено</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="progress-percent">0%</div>
+                        <div class="stat-label">Прогресс</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-notes">0</div>
+                        <div class="stat-label">Заметок</div>
+                    </div>
+                </div>
+
+                <div class="progress-chart">
+                    <h3>Прогресс выполнения задач</h3>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Модальное окно для добавления/редактирования -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Добавить заметку</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="input-title" placeholder="Название..." class="input-field">
+                <textarea id="input-description" placeholder="Описание..." class="input-field textarea"></textarea>
+                
+                <div id="task-options" style="display:none;">
+                    <select id="input-priority" class="input-field">
+                        <option value="low">Низкий приоритет</option>
+                        <option value="medium" selected>Средний приоритет</option>
+                        <option value="high">Высокий приоритет</option>
+                    </select>
+                    <input type="date" id="input-duedate" class="input-field">
+                </div>
+
+                <div id="plan-options" style="display:none;">
+                    <input type="date" id="input-start-date" placeholder="Дата начала" class="input-field">
+                    <input type="date" id="input-end-date" placeholder="Дата завершения" class="input-field">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-btn">Отмена</button>
+                <button class="btn btn-primary" id="save-btn">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
